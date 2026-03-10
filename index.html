@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fidget Mania Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Fidget Mania Shop</h1>
+            <nav>
+                <ul>
+                    <li><a href="#produkty">Produkty</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h2>Vítejte ve světě 3D tištěných fidgetů!</h2>
+            <p>Objevte jedinečné a zábavné fidget hračky, které vás zbaví stresu a nudy.</p>
+            <a href="#produkty" class="btn">Prozkoumat produkty</a>
+        </div>
+    </section>
+
+    <section id="produkty">
+        <div class="container">
+            <h2>Naše produkty</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="fidget_produkt_1.jpg" alt="Fidget Otáčecí Hračka">
+                    <h3>Fidget Otáčecí Hračka</h3>
+                    <p class="description">Unikátní 3D tištěná fidget hračka pro nekonečné otáčení a uvolnění stresu. Ideální pro rušné ruce a zlepšení soustředění.</p>
+                    <p class="price-old">99.90 Kč</p>
+                    <p class="price-new">49.90 Kč</p>
+                    <button class="btn order-btn" data-product="Fidget Otáčecí Hračka">Objednat</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt">
+        <div class="container">
+            <h2>Kontakt</h2>
+            <p>Pro objednávky a dotazy nás prosím kontaktujte na telefonním čísle:</p>
+            <p class="phone-number">792 761 604</p>
+            <p>Nebo vyplňte formulář níže:</p>
+            <form id="contact-form">
+                <input type="text" id="name" placeholder="Vaše jméno" required>
+                <input type="email" id="email" placeholder="Váš email" required>
+                <textarea id="message" placeholder="Vaše zpráva" required></textarea>
+                <button type="submit" class="btn">Odeslat</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Fidget Mania Shop. Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
+
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Potvrzení objednávky</h2>
+            <p>Děkujeme za vaši objednávku! Brzy se vám ozveme na základě vámi zadaných údajů.</p>
+            <p>Prosím, uveďte níže vaše kontaktní údaje a adresu, abychom mohli objednávku dokončit:</p>
+            <form id="modal-order-form">
+                <input type="text" id="modal-name" placeholder="Vaše jméno a příjmení" required>
+                <input type="text" id="modal-address" placeholder="Vaše adresa (ulice, číslo popisné, město, PSČ)" required>
+                <input type="tel" id="modal-phone" placeholder="Váš telefon" required>
+                <button type="submit" class="btn">Potvrdit a odeslat</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+  </html>
+  
