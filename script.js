@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- NASTAVENÍ PLATEB ---
     const bankAccount = "TVOJE_CISLO_UCTU"; // Formát: 123456789/0100
     const iban = "CZXXXXXXXXXXXXXXXXXXXXXX"; // Tvůj IBAN (najdeš v bankovnictví)
-    const price = 49.90;
+    const price = 149.90;
     const currency = "CZK";
 
     // Otevření modalu
