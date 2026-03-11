@@ -1,15 +1,15 @@
-/* Základní styly */
+/* Globální nastavení - Dark Mode */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #0d0d0d; /* Velmi tmavě šedá/černá */
+    color: #e0e0e0;
     line-height: 1.6;
 }
 
 .container {
-    width: 80%;
+    width: 85%;
     margin: auto;
     overflow: hidden;
     padding: 20px 0;
@@ -17,16 +17,19 @@ body {
 
 /* Hlavička */
 header {
-    background: #333;
-    color: #fff;
-    padding-top: 20px;
+    background: #1a1a1a;
+    color: #bc13fe; /* Neonově fialová */
+    padding-top: 15px;
     min-height: 70px;
-    border-bottom: #77aaff 3px solid;
+    border-bottom: #bc13fe 2px solid;
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.3);
 }
 
 header h1 {
     float: left;
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 header nav {
@@ -48,19 +51,19 @@ header li {
 header a {
     color: #fff;
     text-decoration: none;
-    text-transform: uppercase;
-    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
 header a:hover {
-    color: #77aaff;
-    font-weight: bold;
+    color: #bc13fe;
+    text-shadow: 0 0 5px #bc13fe;
 }
 
-/* Hero sekce */
+/* Hero sekce s tvým pozadím */
 #hero {
-    min-height: 400px;
-    background: #555 url('hero_background.jpg') no-repeat center center/cover;
+    min-height: 450px;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero_background.jpg') no-repeat center center/cover;
     text-align: center;
     color: #fff;
     display: flex;
@@ -69,231 +72,124 @@ header a:hover {
 }
 
 #hero h2 {
-    font-size: 3em;
+    font-size: 3.5em;
     margin-bottom: 10px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
 }
 
-#hero p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
-
+/* Tlačítka */
 .btn {
     display: inline-block;
     color: #fff;
-    background: #77aaff;
-    padding: 10px 20px;
+    background: #bc13fe;
+    padding: 12px 25px;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-    border: none; /* Pro tlačítka */
-    cursor: pointer; /* Pro tlačítka */
+    border-radius: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(188, 19, 254, 0.4);
 }
 
 .btn:hover {
-    background: #5588dd;
+    background: #d456ff;
+    box-shadow: 0 0 20px rgba(188, 19, 254, 0.7);
+    transform: scale(1.05);
 }
 
 /* Produkty */
 #produkty {
-    padding: 40px 0;
-    background: #fff;
-    text-align: center;
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
+    padding: 60px 0;
 }
 
 .product-card {
-    background: #fdfdfd;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 25px;
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: 0.3s;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
+    border-color: #bc13fe;
+    box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
 }
 
 .product-card img {
     max-width: 100%;
-    height: auto;
-    border-radius: 4px;
+    border-radius: 10px;
     margin-bottom: 15px;
 }
 
-.product-card h3 {
-    margin: 10px 0;
-    color: #333;
-}
-
-.product-card .description {
-    font-size: 0.9em;
-    color: #666;
-    margin-bottom: 15px;
-}
-
-.product-card .price-old {
+.price-old {
     text-decoration: line-through;
-    color: #999;
-    font-size: 0.9em;
+    color: #777;
 }
 
-.product-card .price-new {
-    font-size: 1.5em;
-    color: #e60000;
+.price-new {
+    font-size: 1.8em;
+    color: #bc13fe;
     font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 15px;
+    display: block;
+    margin: 10px 0;
 }
 
-/* Kontakt */
-#kontakt {
-    padding: 40px 0;
-    background: #e9e9e9;
-    text-align: center;
-}
-
-#kontakt .phone-number {
-    font-size: 2em;
-    color: #77aaff;
-    margin: 20px 0;
-    font-weight: bold;
-}
-
-#contact-form {
-    max-width: 500px;
-    margin: 20px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-#contact-form input[type="text"],
-#contact-form input[type="email"],
-#contact-form textarea {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1em;
-}
-
-#contact-form textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-#contact-form .btn {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.1em;
-}
-
-/* Patička */
-footer {
-    background: #333;
+/* Formuláře */
+input, textarea {
+    background: #222;
+    border: 1px solid #444;
     color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 30px;
+    padding: 12px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 15px;
+    box-sizing: border-box;
 }
 
-/* Modal styly */
+input:focus {
+    border-color: #bc13fe;
+    outline: none;
+}
+
+/* Modální okno */
 .modal {
-    display: none; /* Skrytý ve výchozím stavu */
-    position: fixed; /* Zůstává na místě, i když se stránka posouvá */
-    z-index: 1; /* Sedí na vrchu */
-    left: 0;
-    top: 0;
-    width: 100%; /* Plná šířka */
-    height: 100%; /* Plná výška */
-    overflow: auto; /* Povolit posuvník, pokud je obsah příliš velký */
-    background-color: rgba(0,0,0,0.6); /* Černá s průhledností */
-    display: flex;
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9);
     justify-content: center;
     align-items: center;
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 30px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 10px;
+    background: #1a1a1a;
+    padding: 40px;
+    border-radius: 20px;
+    border: 2px solid #bc13fe;
+    width: 90%;
+    max-width: 450px;
     position: relative;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .close-btn {
-    color: #aaa;
     position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
+    right: 20px; top: 10px;
+    font-size: 30px;
     cursor: pointer;
+    color: #777;
 }
 
-.close-btn:hover,
-.close-btn:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+/* QR kód sekce */
+#qr-code-container h3 {
+    color: #bc13fe;
 }
 
-#modal-order-form input[type="text"],
-#modal-order-form input[type="tel"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1em;
+#qr-code-img {
+    border: 10px solid #fff; /* Bílá plocha kolem QR kódu pro lepší čitelnost */
+    border-radius: 5px;
 }
 
-#modal-order-form .btn {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.1em;
-}
-
-
-/* Responzivní design */
-@media (max-width: 768px) {
-    header h1, header nav {
-        float: none;
-        text-align: center;
-    }
-
-    header nav ul {
-        padding: 10px 0;
-    }
-
-    header li {
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
-
-    #hero h2 {
-        font-size: 2em;
-    }
-}
-
-  
