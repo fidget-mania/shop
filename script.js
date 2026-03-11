@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Prvky z HTML
     const orderButtons = document.querySelectorAll('.order-btn');
     const orderModal = document.getElementById('order-modal');
     const closeBtn = document.querySelector('.close-btn');
@@ -6,17 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const qrContainer = document.getElementById('qr-code-container');
     const qrImg = document.getElementById('qr-code-img');
 
-    // --- NASTAVENÍ PLATEB ---
-    const bankAccount = "TVOJE_CISLO_UCTU"; // Formát: 123456789/0100
-    const iban = "CZXXXXXXXXXXXXXXXXXXXXXX"; // Tvůj IBAN (najdeš v bankovnictví)
-    const price = 149.90;
-    const currency = "CZK";
+    // --- !!! TADY DOPLŇ SVÉ ÚDAJE !!! ---
+    const bankAccount = "123456789/0100"; // Tvoje číslo účtu/kód banky
+    const iban = "CZ0000000000000000000000"; // Tvůj IBAN z bankovnictví
+    const price = 49.90;
+    const myPhoneNumber = '792761604';
 
-    // Otevření modalu
+    // Otevření modalu při kliknutí na "Objednat"
     orderButtons.forEach(button => {
         button.addEventListener('click', () => {
             orderModal.style.display = 'flex';
-            qrContainer.style.display = 'none'; // Schovat QR kód při novém otevření
+            qrContainer.style.display = 'none'; // Skrýt QR při novém otevření
         });
     });
 
@@ -28,58 +29,56 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn.addEventListener('click', closeModal);
     window.addEventListener('click', (e) => { if (e.target == orderModal) closeModal(); });
 
-    // Zpracování objednávky
+    // Hlavní funkce objednávky
     modalOrderForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
         const name = document.getElementById('modal-name').value;
         const address = document.getElementById('modal-address').value;
         const phone = document.getElementById('modal-phone').value;
-        const productName = "Fidget Otaceci Hracka";
+        
+        // Vytvoření Variabilního Symbolu z telefonu (jen čísla)
+        const vs = phone.replace(/\D/g, '').slice(-10);
 
-        // Vyčištění telefonu pro variabilní symbol (pouze číslice)
-        const vs = phone.replace(/\D/g, '').slice(-10); 
-
-        // Generování URL pro QR platbu přes Paylibo API
-        // Parametry: účet, kód banky, částka, měna, VS, zpráva
+        // 1. GENEROVÁNÍ QR KÓDU
         const accountParts = bankAccount.split('/');
         const accNumber = accountParts[0];
         const bankCode = accountParts[1];
         
-        const message = `Objednavka ${name}`;
-        const qrUrl = `https://api.paylibo.com/paylibo/generator/czech/image?accountNumber=${accNumber}&bankCode=${bankCode}&amount=${price}&currency=${currency}&vs=${vs}&message=${encodeURIComponent(message)}`;
+        const qrMessage = `Objednavka ${name}`;
+        const qrUrl = `https://api.paylibo.com/paylibo/generator/czech/image?accountNumber=${accNumber}&bankCode=${bankCode}&amount=${price}&currency=CZK&vs=${vs}&message=${encodeURIComponent(qrMessage)}`;
 
-        // Zobrazení QR kódu zákazníkovi
+        // Zobrazení QR kódu na webu
         qrImg.src = qrUrl;
         qrContainer.style.display = 'block';
 
-        // Příprava dat pro prodejce (SMS zpráva)
+        // 2. PŘÍPRAVA SMS
         const smsText = `Fidget Mania: Objednavka!
-Zbozi: ${productName}
-Zakaznik: ${name}
+Zbozi: Fidget Hracka
+Od: ${name}
 Adresa: ${address}
-Tel: ${phone}
 VS: ${vs}`;
 
-        // Odeslání SMS na tvé číslo
-        const myPhoneNumber = '792761604';
-        
-        // Malá pauza, aby uživatel viděl, že se web "hýbe", než ho to hodí do SMS
-        setTimeout(() => {
-            window.location.href = `sms:${myPhoneNumber}?body=${encodeURIComponent(smsText)}`;
-        }, 1500);
+        alert('Objednávka uložena! Nyní uvidíte QR kód pro platbu. Po zavření tohoto okna se vám otevře SMS pro odeslání objednávky nám.');
 
-        alert('Objednávka byla zpracována! Níže se zobrazil QR kód pro platbu. Po zavření okna budete přesměrováni na odeslání potvrzovací SMS.');
+        // 3. ODESLÁNÍ SMS (s mírným zpožděním, aby si uživatel stihl všimnout QR kódu)
+        setTimeout(() => {
+            const encodedMsg = encodeURIComponent(smsText);
+            // Speciální formát pro iOS i Android
+            const smsUrl = `sms:${myPhoneNumber}${navigator.userAgent.match(/iPhone/i) ? '&' : '?'}body=${encodedMsg}`;
+            
+            window.location.href = smsUrl;
+        }, 2000);
     });
 
-    // Kontaktní formulář
+    // Základní kontaktní formulář
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Děkujeme za zprávu! Ozveme se vám.');
+            alert('Děkujeme za zprávu! Ozveme se vám co nejdříve.');
             contactForm.reset();
         });
     }
 });
-
+                                                  
